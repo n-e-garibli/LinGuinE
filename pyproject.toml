@@ -23,7 +23,7 @@ dependencies = [
     "tqdm>=4.67.1",
     "omegaconf>=2.3.0",
     "SimpleITK>=2.5.2",
-    "cc3d",
+    "connected-components-3d",
 ]
 
 [project.optional-dependencies]
