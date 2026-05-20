@@ -249,26 +249,20 @@ class LinguineDatasetProcessor:
                 seed=self.cfg.analysis.seed,
             )
 
-    def _get_point_extractor(self) -> CSVPointExtractor:
+    def _get_point_extractor(self) -> CSVPointExtractor | None:
         """Creates a point extractor for landmark generation.
 
         Returns:
             CSVPointExtractor: Point extractor that yields anatomical landmarks
-                from the provided CSV .
-
-        Raises:
-            ValueError: If the specified CSV file does not exist
+                if a CSV is provided in the config. None otherwise.
         """
         csv_path = self.cfg.registration.point_extractor_csv
         if csv_path:
             if not os.path.exists(csv_path):
                 raise ValueError(f"CSV in {self.cfg.registration.point_extractor_csv} not found.")
             LOGGER.info(f"Will use csv in {self.cfg.registration.point_extractor_csv}")
-            extractor = CSVPointExtractor(landmark_csv_path=csv_path)
-        else:
-            raise ValueError("No landmark csv provided.")
-
-        return extractor
+            return CSVPointExtractor(landmark_csv_path=csv_path)
+        return None
 
     def _get_registrator(self) -> PointSetRegistrator | ImageRegistrator | None:
         """Creates a registrator based on configuration."""
