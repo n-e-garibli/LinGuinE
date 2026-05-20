@@ -524,9 +524,12 @@ class LinguineDatasetProcessor:
             # Save and add additional click validity metrics.
             self.propagator.cv_metrics.save_metrics_csv(os.path.join(self.save_folder, "cv_metrics.csv"))
             # Add additional click validity metrics into the results.
-            results_df["valid"] = self.propagator.cv_metrics.valid_click_per_lesion_log
-            results_df["invalid"] = self.propagator.cv_metrics.invalid_click_per_lesion_log
-            results_df["label_dist"] = self.propagator.cv_metrics.distances
+            try:
+                results_df["valid"] = self.propagator.cv_metrics.valid_click_per_lesion_log
+                results_df["invalid"] = self.propagator.cv_metrics.invalid_click_per_lesion_log
+                results_df["label_dist"] = self.propagator.cv_metrics.distances
+            except Exception as e:
+                LOGGER.error(f"Failed to add prompt validity metrics to the results.csv: {e}")
         # Save results df to csv.
         csv_path = os.path.join(self.save_folder, RESULTS_CSV)
         results_df.to_csv(csv_path, index=False)
