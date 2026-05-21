@@ -9,7 +9,7 @@ Note that there are additional features present in the codebase that were not di
 ## Updates and Release Timeline
 1. Provisional MICCAI acceptance - 07/05/2026 ✅
 2. Initial code release - 14/05/2026 ✅
-3. UniToChest associated longitudinal mask release (see benchmarking/) - 22/05/2026 ✅
+3. UniToChest associated longitudinal mask release (see benchmarking/) - 21/05/2026 ✅
 4. LinGuinE generated masks for public datasets release - estimated 01/06/2026
 5. Support for clicks as source scan guidance - TBD
 6. Wrappers for some publicly available segmentation models - TBD
